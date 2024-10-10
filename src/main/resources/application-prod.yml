@@ -1,0 +1,7 @@
+spring:
+  data:
+    redis:
+      cluster:
+        password: bitnami
+        max-redirects: 1
+        nodes: localhost:6379

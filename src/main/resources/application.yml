@@ -1,0 +1,8 @@
+server:
+  port: 9090
+
+spring:
+  profiles:
+    active: prod , dev  # 나중에 기입된 것이 더 우선순위로 적용됨
+
+# spring boot 멀티 프로필 검색 해볼 것
