@@ -5,7 +5,8 @@ services:
   redis-cluster:
     image: aysel0413/redis:0.1
     container_name: redis-master
-    network_mode: host
+    networks:
+      - mynetworks
     ports:
       - 7000:7000
     volumes: # 작성한 설정 파일을 볼륨을 통해 컨테이너에 공유
@@ -16,7 +17,8 @@ services:
   redis-node-1:
     image: aysel0413/redis:0.1
     container_name: redis-slave1
-    network_mode: host
+    networks:
+      - mynetworks
     ports:
       - 7001:7001
     volumes:
@@ -27,7 +29,8 @@ services:
   redis-node-2:
     image: aysel0413/redis:0.1
     container_name: redis-slave2
-    network_mode: host
+    networks:
+      - mynetworks
     ports:
       - 7002:7002
     volumes:
@@ -38,7 +41,8 @@ services:
   redis-cluster-entry:
     image: aysel0413/redis:0.1
     container_name: redis-cluster-entry
-    network_mode: host
+    networks:
+      - mynetworks
     ports:
       - 6379:6379
 #    command: redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 --cluster-yes
@@ -46,3 +50,7 @@ services:
       - redis-cluster
       - redis-node-1
       - redis-node-2
+
+networks:
+  mynetworks:
+    driver: bridge
