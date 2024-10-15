@@ -1,16 +1,8 @@
 package org.sparta.redisclustertest.config;
 
-import io.lettuce.core.ClientOptions;
-import io.lettuce.core.SocketOptions;
-import io.lettuce.core.cluster.ClusterClientOptions;
-import io.lettuce.core.cluster.ClusterTopologyRefreshOptions;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.redisson.Redisson;
-import org.redisson.api.RedissonClient;
-import org.redisson.config.ClusterServersConfig;
-import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +11,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisNode;
-import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
@@ -27,8 +18,6 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import java.time.Duration;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -91,21 +80,21 @@ public class RedisConfig {
         return new LettuceConnectionFactory(redisClusterConfiguration);
     }
 
-    @Bean
-    public RedissonClient redissonClient() {
-        final Config config = new Config();
-
-        ClusterServersConfig csc = config.useClusterServers()
-                .setScanInterval(2000)
-                .setConnectTimeout(100)
-                .setTimeout(3000)
-                .setRetryAttempts(3)
-                .setRetryInterval(1500);
-
-        nodes.forEach(node -> csc.addNodeAddress("redis://" + node));
-
-        return Redisson.create(config);
-    }
+//    @Bean
+//    public RedissonClient redissonClient() {
+//        final Config config = new Config();
+//
+//        ClusterServersConfig csc = config.useClusterServers()
+//                .setScanInterval(2000)
+//                .setConnectTimeout(100)
+//                .setTimeout(3000)
+//                .setRetryAttempts(3)
+//                .setRetryInterval(1500);
+//
+//        nodes.forEach(node -> csc.addNodeAddress("redis://" + node));
+//
+//        return Redisson.create(config);
+//    }
 
     // lettuce 사용시
 //    @Bean

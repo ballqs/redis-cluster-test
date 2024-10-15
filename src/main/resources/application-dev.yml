@@ -4,4 +4,6 @@ spring:
       cluster:
         password: 1234
         max-redirects: 3
-        nodes: 127.0.0.1:7000 , 127.0.0.1:7001 , 127.0.0.1:7002 , 127.0.0.1:7003 , 127.0.0.1:7004 , 127.0.0.1:7005
+#        nodes: 127.0.0.1:7000 , 127.0.0.1:7001 , 127.0.0.1:7002 , 127.0.0.1:7003 , 127.0.0.1:7004 , 127.0.0.1:7005
+        nodes: host.docker.internal:7000 , host.docker.internal:7001 , host.docker.internal:7002 , host.docker.internal:7003 , host.docker.internal:7004 , host.docker.internal:7005
+#        nodes: redis-node1:7000 , redis-node2:7001 , redis-node3:7002 , redis-node4:7003 , redis-node5:7004 , redis-node6:7005
